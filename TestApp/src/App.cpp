@@ -48,10 +48,11 @@ public:
 		uint8_t b = (uint8_t)(color.b * 255.0f);
 		uint8_t a = (uint8_t)(color.a * 255.0f);
 
-		uint32_t result = (a << 24) | (b << 16) | (g << 8) | r;
+		uint32_t result = (r << 24) | (g << 16) | (b << 8) | a;
 		return result;
 	}
 	uint32_t calcPixelColor(const glm::vec2& coord) {
+		glm::vec3 sphereColor = { 1,1,1 };
 		glm::vec3 spherePos(.0f, .0f, .0f);
 		glm::vec3 rayOrigin(0.0f, 0.0f, 2.0f);
 		glm::vec3 rayDirection(coord.x, coord.y, -1.0f);
@@ -74,7 +75,7 @@ public:
 
 		float discriminant = b * b - 4.0f * a * c;
 		if (discriminant < 0.0f)
-			return 0xff000000;
+			return 0x000000ff;
 
 		glm::vec3 origin = rayOrigin - spherePos;
 		glm::vec3 worldPos = origin + rayDirection;
@@ -83,7 +84,6 @@ public:
 		glm::vec3 color(0.0f);
 		glm::vec3 lightDir = glm::normalize(glm::vec3(-1, -1, -1));
 		float lightIntensity = max(glm::dot(normal , -lightDir), 0.0f); // == cos(angle)
-		glm::vec3 sphereColor = { 1,0,0 };
 		sphereColor *= lightIntensity;
 		color += sphereColor;
 

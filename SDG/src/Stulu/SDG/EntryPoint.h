@@ -1,14 +1,8 @@
 #pragma once
+namespace SDG {
+	extern Application* CreateApplication();
 
-#ifdef ST_PLATFORM_WINDOWS
-#include <Windows.h>
-	extern SDG::Application* SDG::CreateApplication();
-	int main(int argc, char** argv) {
-#if ST_SHOWCONSOLE
-		ShowWindow(GetConsoleWindow(), SW_SHOW);
-#else
-		ShowWindow(GetConsoleWindow(), SW_HIDE);
-#endif // ST_SHOWCONSOLE
+	int main_entry(int argc, char** argv) {
 
 		auto application = SDG::CreateApplication();
 
@@ -18,5 +12,17 @@
 
 		return 0;
 	}
+}
 
-#endif
+#ifdef ST_PLATFORM_WINDOWS
+#include <Windows.h>
+#ifdef ST_DIST
+int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow) {
+	return SDG::main_entry(__argc, __argv);
+}
+#else
+int main(int argc, char** argv) {
+	return SDG::main_entry(argc, argv);
+}
+#endif //ST_DIST
+#endif //ST_PLATFORM_WINDOWS
