@@ -1,7 +1,6 @@
 #pragma once
 #include "../RenderCommand.h"
 
-
 namespace SDG {
 	class STULU_API OpenGLRenderAPI {
 	public:

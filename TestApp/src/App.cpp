@@ -41,6 +41,16 @@ public:
 		}
 		ImGui::End();
 	}
+	static uint32_t ConvertToRGBA(const glm::vec4& color)
+	{
+		uint8_t r = (uint8_t)(color.r * 255.0f);
+		uint8_t g = (uint8_t)(color.g * 255.0f);
+		uint8_t b = (uint8_t)(color.b * 255.0f);
+		uint8_t a = (uint8_t)(color.a * 255.0f);
+
+		uint32_t result = (a << 24) | (b << 16) | (g << 8) | r;
+		return result;
+	}
 	uint32_t calcPixelColor(const glm::vec2& coord) {
 		glm::vec3 spherePos(.0f, .0f, .0f);
 		glm::vec3 rayOrigin(0.0f, 0.0f, 2.0f);
@@ -63,10 +73,22 @@ public:
 		// b^2 - 4ac
 
 		float discriminant = b * b - 4.0f * a * c;
-		if (discriminant >= 0.0f)
-			return 0xffff00ff;
+		if (discriminant < 0.0f)
+			return 0xff000000;
 
-		return 0xff000000;
+		glm::vec3 origin = rayOrigin - spherePos;
+		glm::vec3 worldPos = origin + rayDirection;
+		glm::vec3 normal = glm::normalize(worldPos);
+
+		glm::vec3 color(0.0f);
+		glm::vec3 lightDir = glm::normalize(glm::vec3(-1, -1, -1));
+		float lightIntensity = max(glm::dot(normal , -lightDir), 0.0f); // == cos(angle)
+		glm::vec3 sphereColor = { 1,0,0 };
+		sphereColor *= lightIntensity;
+		color += sphereColor;
+
+
+		return ConvertToRGBA(glm::vec4(color,1.0f));
 	}
 };
 

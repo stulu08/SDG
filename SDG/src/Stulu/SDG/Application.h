@@ -3,6 +3,11 @@
 #include "Layer.h"
 #include "GraphicsContext.h"
 
+#define IMGUI_DEFINE_MATH_OPERATORS
+#include <imgui.h>
+#include <imgui_internal.h>
+#include <misc/cpp/imgui_stdlib.h>
+
 #include <vector>
 struct ImGuiContext;
 namespace SDG {
@@ -31,6 +36,7 @@ namespace SDG {
 
 		uint32_t getWidth();
 		uint32_t getHeight();
+		void* getNativeWindow() { return m_window; }
 
 		inline const float getFrameTime() const { return m_frameTime; }
 		inline const ApplicationInfo& getApplicationInfo() const { return m_appInfo; }
