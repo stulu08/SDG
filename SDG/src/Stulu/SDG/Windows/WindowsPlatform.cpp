@@ -83,38 +83,15 @@ namespace SDG {
 				return szTitle;
 		}
 
-		return std::string(); /*
-		
-		OPENFILENAMEA ofn;       // common dialog box structure
-		char szFile[260];       // buffer for file name
-		//HWND hwnd;              // owner window
-		//HANDLE hf;              // file handle
-
-		// Initialize OPENFILENAME
-		ZeroMemory(&ofn, sizeof(OPENFILENAME));
-		ofn.lStructSize = sizeof(OPENFILENAME);
-		ofn.hwndOwner = glfwGetWin32Window((GLFWwindow*)Application::get().getNativeWindow());;
-		ofn.lpstrFile = szFile;
-		// Set lpstrFile[0] to '\0' so that GetOpenFileName does not 
-		// use the contents of szFile to initialize itself.
-		ofn.lpstrFile[0] = '\0';
-		ofn.nMaxFile = sizeof(szFile);
-		ofn.lpstrFileTitle = "select.this.directory";
-		ofn.nMaxFileTitle = 21;
-		ofn.lpstrFilter = "Directory\0*.this.directory";
-		ofn.nFilterIndex = 1;
-		//ofn.lpstrFileTitle = NULL;
-		ofn.lpstrInitialDir = NULL;
-		ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
-		// Display the Open dialog box. 
-		if (GetSaveFileNameA(&ofn) == TRUE) {
-			size_t pos = std::string(ofn.lpstrFile).find_last_of("\\/");
-			return (std::string::npos == pos)
-				? ""
-				: std::string(ofn.lpstrFile).substr(0, pos);
-		}
-
-		return std::string();*/
+		return std::string();
+	}
+	std::string Platform::getConfigString(const std::string& key, const std::string& section, const std::string& defaultValue, const std::string& file) {
+		char value[1000];
+		GetPrivateProfileStringA(section.c_str(), key.c_str(), defaultValue.c_str(), value, sizeof(value) / sizeof(value[0]), file.c_str());
+		return value;
+	}
+	bool Platform::setConfigString(const std::string& key, const std::string& value, const std::string& section, const std::string& file) {
+		return WritePrivateProfileStringA(section.c_str(), key.c_str(), value.c_str(), file.c_str());
 	}
 	bool Platform::createDirectory(const char* directory) {	
 		if (CreateDirectoryA(std::string(directory).c_str(), NULL)) {
