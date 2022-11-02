@@ -1,61 +1,87 @@
-include "./vendor/premake/premake_customization/solution_items.lua"
-include "./vendor/premake/premake_customization/generate_doc.lua"
-workspace "SDG"
-	startproject "SDG"
-	configurations
+project "SDG"
+	kind "StaticLib"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "")
+	objdir ("bin-int/" .. outputdir .. "")
+	
+	
+	pchheader "st_pch.h"
+	pchsource "src/st_pch.cpp"
+
+	files
 	{
-		"Debug",
-		"Release",
-		"Dist"
+		"src/**.h",
+		"src/**.cpp",
+		"vendor/stb_image/**.cpp",
+		"vendor/stb_image/**.h",
+		"vendor/glm/glm/**.hpp",
+		"vendor/glm/glm/**.inl"
 	}
-	flags
+
+	defines
 	{
-		"MultiProcessorCompile"
+		"_CRT_SECURE_NO_WARNINGS",
 	}
-	solution_items 
+	defines
 	{
-		"premake5.lua",
-		"SDG/premake5.lua",
-		"TestApp/premake5.lua",
-		"README.md"
+		--"ST_DYNAMIC_LINK",
+		--"ST_DLL_BUILD"
 	}
-	architecture "x86_64"
+
+	includedirs
+	{
+		"src",
+		"src/Stulu/",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Vulkan}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
+		
+	}
+
+	links 
+	{ 
+		"GLFW",
+		"Glad",
+		"ImGui",
+		
+		"opengl32.lib",
+
+		"vulkan-1.lib",
+		"VkLayer_utils.lib"
+	}
+	libdirs 
+	{ 
+		"%{vulkanSDK}/Lib"
+	}
+	
+	filter "system:windows"
+		systemversion "latest"
+		defines
+		{
+			"GLFW_INCLUDE_NONE"
+		}
+		
 
 	filter "configurations:Debug"
-		defines     "_DEBUG"
+		defines "ST_DEBUG"
+		runtime "Debug"
+		optimize "off"
+		symbols "on"
 
-	filter "configurations:Release or Dist"
-		defines     "NDEBUG"
+	filter "configurations:Release"
+		defines "ST_RELEASE"
+		runtime "Release"
+		optimize "on"
+		symbols "on"
 
-	filter { "system:windows", "configurations:Dist", "toolset:not mingw" }
-		flags		{ "LinkTimeOptimization" }
-
-staticBuild = true
-staticRuntime = true
-
-outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-
-
-vulkanSDK = os.getenv("VULKAN_SDK")
-
-IncludeDir = {}
-IncludeDir["GLFW"] = "%{wks.location}/vendor/GLFW/include"
-IncludeDir["Glad"] = "%{wks.location}/vendor/Glad/include"
-IncludeDir["ImGui"] = "%{wks.location}/vendor/imgui"
-IncludeDir["glm"] = "%{wks.location}/vendor/glm"
-IncludeDir["stb_image"] = "%{wks.location}/vendor/stb_image"
-IncludeDir["Vulkan"] = "%{vulkanSDK}/Include"
-
-ProjectDir = {}
-ProjectDir["SDG"] = "%{wks.location}/Stulu"
-
-
-group "Dependencies"
-include "vendor/GLFW"
-include "vendor/Glad"
-include "vendor/imgui"
-group ""
-
-include "SDG"
-include "TestApp"
-
+	filter "configurations:Dist"
+		defines "ST_DIST"
+		runtime "Release"
+		optimize "on"
+		symbols "off"

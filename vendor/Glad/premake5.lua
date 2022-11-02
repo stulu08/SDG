@@ -1,9 +1,8 @@
 project "Glad"
 	kind "StaticLib"
     language "C"
-	if(staticRuntime) then
-		staticruntime "on"
-	end
+	staticruntime "on"
+	
     
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
