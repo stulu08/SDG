@@ -5,9 +5,8 @@
 
 namespace SDG {
 	Ref<ComputeShader> ComputeShader::create(const std::string& name, const std::string& src) {
-#if ST_USE_OPENGL
+#if SDG_USE_OPENGL
 		return createRef<OpenGLComputeShader>(name, src);
-#elif ST_USE_VULKAN
 #endif
 	}
 }

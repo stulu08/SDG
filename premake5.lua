@@ -14,11 +14,7 @@ project "SDG"
 	files
 	{
 		"src/**.h",
-		"src/**.cpp",
-		"vendor/stb_image/**.cpp",
-		"vendor/stb_image/**.h",
-		"vendor/glm/glm/**.hpp",
-		"vendor/glm/glm/**.inl"
+		"src/**.cpp"
 	}
 
 	defines
@@ -27,8 +23,8 @@ project "SDG"
 	}
 	defines
 	{
-		--"ST_DYNAMIC_LINK",
-		--"ST_DLL_BUILD"
+		--"SDG_DYNAMIC_LINK",
+		--"SDG_DLL_BUILD"
 	}
 
 	includedirs
@@ -36,7 +32,6 @@ project "SDG"
 		"src",
 		"src/Stulu/",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Vulkan}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
@@ -49,15 +44,7 @@ project "SDG"
 		"GLFW",
 		"Glad",
 		"ImGui",
-		
-		"opengl32.lib",
-
-		"vulkan-1.lib",
-		"VkLayer_utils.lib"
-	}
-	libdirs 
-	{ 
-		"%{vulkanSDK}/Lib"
+		"%{Library.OpenGL}"
 	}
 	
 	filter "system:windows"
@@ -69,19 +56,19 @@ project "SDG"
 		
 
 	filter "configurations:Debug"
-		defines "ST_DEBUG"
+		defines "SDG_DEBUG"
 		runtime "Debug"
 		optimize "off"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "ST_RELEASE"
+		defines "SDG_RELEASE"
 		runtime "Release"
 		optimize "on"
 		symbols "on"
 
 	filter "configurations:Dist"
-		defines "ST_DIST"
+		defines "SDG_DIST"
 		runtime "Release"
 		optimize "on"
 		symbols "off"

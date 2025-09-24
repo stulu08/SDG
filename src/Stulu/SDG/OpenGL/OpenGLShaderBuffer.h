@@ -2,7 +2,7 @@
 #include "../ShaderBuffer.h"
 
 namespace SDG {
-	class STULU_API OpenGLUniformBuffer : public UniformBuffer {
+	class SDG_API OpenGLUniformBuffer : public UniformBuffer {
 	public:
 		OpenGLUniformBuffer(uint32_t size, uint32_t binding);
 		virtual ~OpenGLUniformBuffer();
@@ -15,7 +15,7 @@ namespace SDG {
 		uint32_t m_size = 0;
 	};
 
-	class STULU_API OpenGLShaderStorageBuffer : public ShaderStorageBuffer {
+	class SDG_API OpenGLShaderStorageBuffer : public ShaderStorageBuffer {
 	public:
 		OpenGLShaderStorageBuffer(uint32_t size, uint32_t binding, BufferDrawMode mode);
 		virtual ~OpenGLShaderStorageBuffer();

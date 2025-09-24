@@ -1,5 +1,5 @@
 #include "st_pch.h"
-#ifdef ST_PLATFORM_WINDOWS
+#ifdef SDG_PLATFORM_WINDOWS
 #define GLFW_EXPOSE_NATIVE_WIN32
 #include <GLFW/glfw3.h>
 #include <GLFW/glfw3native.h>

@@ -4,9 +4,9 @@
 
 namespace SDG {
 	Scope<GraphicsContext> GraphicsContext::create(GLFWwindow* window) {
-#if ST_USE_OPENGL
+#if SDG_USE_OPENGL
 		return createScope<OpenGLContext>(window);
-#elif ST_USE_VULKAN
+#elif SDG_USE_VULKAN
 #endif
 	}
 }

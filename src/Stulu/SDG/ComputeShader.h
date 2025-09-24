@@ -8,7 +8,7 @@ namespace SDG {
 		ReadWrite = 0x88BA
 	};
 
-	class STULU_API ComputeShader {
+	class SDG_API ComputeShader {
 	public:
 		struct Usage {
 			static inline const uint32_t None = 0x00000000;// Wont wait for execution finish

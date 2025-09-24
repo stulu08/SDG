@@ -2,7 +2,7 @@
 #include "../Texture.h"
 
 namespace SDG {
-	class STULU_API OpenGLTexture : public Texture {
+	class SDG_API OpenGLTexture : public Texture {
 	public:
 		OpenGLTexture(uint32_t width, uint32_t height, const TextureSettings& settings);
 		OpenGLTexture(const std::string& path, const TextureSettings& settings);

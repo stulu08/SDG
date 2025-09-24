@@ -14,9 +14,9 @@ namespace SDG {
 	}
 }
 
-#ifdef ST_PLATFORM_WINDOWS
+#ifdef SDG_PLATFORM_WINDOWS
 #include <Windows.h>
-#ifdef ST_DIST
+#ifdef SDG_DIST
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow) {
 	return SDG::main_entry(__argc, __argv);
 }
@@ -24,5 +24,5 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
 int main(int argc, char** argv) {
 	return SDG::main_entry(argc, argv);
 }
-#endif //ST_DIST
-#endif //ST_PLATFORM_WINDOWS
+#endif
+#endif

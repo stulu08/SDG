@@ -2,7 +2,7 @@
 #include "../GraphicsContext.h"
 
 namespace SDG {
-	class STULU_API OpenGLContext : public GraphicsContext {
+	class SDG_API OpenGLContext : public GraphicsContext {
 	public:
 		OpenGLContext();
 		OpenGLContext(GLFWwindow* window);

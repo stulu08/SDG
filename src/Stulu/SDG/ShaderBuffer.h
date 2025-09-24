@@ -7,7 +7,7 @@ namespace SDG {
 		Dynamic, // The data store contents will be modified repeatedly and used many times.
 		Stream // The data store contents will be modified once and used at most a few times.
 	};
-	class STULU_API UniformBuffer {
+	class SDG_API UniformBuffer {
 	public:
 		virtual ~UniformBuffer() = default;
 
@@ -17,7 +17,7 @@ namespace SDG {
 
 		static Ref<UniformBuffer> create(uint32_t size, uint32_t binding);
 	};
-	class STULU_API ShaderStorageBuffer {
+	class SDG_API ShaderStorageBuffer {
 	public:
 		virtual ~ShaderStorageBuffer() = default;
 

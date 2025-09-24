@@ -10,7 +10,7 @@ namespace SDG {
 		const std::string version;
 		const std::string device;
 	};
-	class STULU_API GraphicsContext {
+	class SDG_API GraphicsContext {
 	public:
 		virtual ~GraphicsContext() = default;
 

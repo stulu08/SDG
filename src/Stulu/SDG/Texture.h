@@ -26,7 +26,7 @@ namespace SDG {
 			TextureFiltering filtering = TextureFiltering::Linear)
 			:format(format), wrap(wrap), tiling(tiling), levels(levels), border(border), filtering(filtering) {}
 	};
-	class STULU_API Texture
+	class SDG_API Texture
 	{
 	public:
 		virtual ~Texture() = default;

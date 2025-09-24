@@ -2,7 +2,7 @@
 #include "Core.h"
 
 namespace SDG {
-	class STULU_API Layer
+	class SDG_API Layer
 	{
 	public:
 		virtual ~Layer() {};

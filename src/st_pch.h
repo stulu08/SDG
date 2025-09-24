@@ -32,12 +32,12 @@
 #include "SDG/PlatformConfig.h"
 
 
-#ifdef ST_PLATFORM_WINDOWS
+#ifdef SDG_PLATFORM_WINDOWS
 	#include <Windows.h>
 	#include <commdlg.h>
 	#include <psapi.h>
 	#include <shlobj_core.h>
-#elif ST_PLATFORM_LINUX
+#elif SDG_PLATFORM_LINUX
 	#include <posixver.h>
 	#include <mkpath.h>
 	#include <emalloc.h>

@@ -2,7 +2,7 @@
 #include "Core.h"
 #include "Application.h"
 namespace SDG{
-	class STULU_API RenderCommand {
+	class SDG_API RenderCommand {
 	public:
 		static void init();
 		static void setViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height);

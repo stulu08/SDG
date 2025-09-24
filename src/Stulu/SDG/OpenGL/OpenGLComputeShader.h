@@ -2,7 +2,7 @@
 #include "../ComputeShader.h"
 
 namespace SDG {
-	class STULU_API OpenGLComputeShader : public ComputeShader {
+	class SDG_API OpenGLComputeShader : public ComputeShader {
 	public:
 		OpenGLComputeShader(const std::string& name, const std::string& src);
 		virtual ~OpenGLComputeShader();

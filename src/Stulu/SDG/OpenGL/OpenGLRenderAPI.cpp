@@ -3,8 +3,8 @@
 #include <stb_image.h>
 #include <glad/glad.h>
 
-#include "examples/imgui_impl_glfw.h"
-#include "examples/imgui_impl_opengl3.h"
+#include "backends/imgui_impl_glfw.h"
+#include "backends/imgui_impl_opengl3.h"
 
 namespace SDG {
 	//https://www.khronos.org/opengl/wiki/Debug_Output

@@ -17,7 +17,7 @@ namespace SDG {
 		uint64_t physicalUsed;
 		uint64_t physicalUsedByProcess;
 	};
-	class STULU_API Platform {
+	class SDG_API Platform {
 	public:
 		static float getTime();
 
